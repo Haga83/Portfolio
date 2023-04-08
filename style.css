@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Teko", sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: #0c1f3f;
   background-image: linear-gradient(to right, #0c1f3f, #054f7c, #0c1f3f);
   animation: animateBackground 20s ease-in-out infinite;
@@ -16,7 +16,7 @@ nav {
   transform: translateY(-100%);
   animation: slideDown 1s forwards;
   border-bottom: #000 solid 1px;
-  font-size: 20px;
+  font-size: 18px;
   top: 0;
   position: fixed;
   width: 100%;
@@ -134,11 +134,10 @@ nav a:hover::after {
   }
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@media (max-width: 400px) {
+  .menu a {
+    font-size: 14px;
+  }
 }
 
 .Accueil {
@@ -146,8 +145,9 @@ nav a:hover::after {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
-  opacity: 0;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  opacity: 1;
   transform: translateY(50px);
   transition: all 1s ease-in-out;
 }
@@ -161,9 +161,8 @@ nav a:hover::after {
   flex-direction: column;
   width: 25%;
   height: 25%;
-  font-size: 22px;
+  font-size: 20px;
   margin-right: 5%;
-  text-shadow: rgb(0, 0, 0) 0px 0px 10px;
   color: #ffffff;
 }
 
@@ -206,79 +205,70 @@ nav a:hover::after {
   }
 }
 
-#realisation {
-  text-shadow: rgb(0, 0, 0) 0px 0px 10px;
-  color: #ffffff;
+.container-realisation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 40px;
+  max-width: 960px;
 }
 
 .block {
-  border: #000 solid 1px;
-  position: relative;
-  display: inline-block;
-  width: 550px;
-  height: 325px;
-  overflow: hidden;
-  margin: 20px;
+  width: 400px;
+  margin-bottom: 50px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
 }
 
-@media screen and (max-width: 1550px) {
-  .block {
-    width: 400px;
-    height: 250px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .block {
-    width: 300px;
-    height: 200px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .block {
-    width: 200px;
-    height: 150px;
-  }
+.block:hover {
+  transform: translateY(-5px);
 }
 
 .block img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  transition: all 0.5s ease-in-out;
+  height: auto;
 }
 
-.block:hover img {
-  transform: scale(1.1);
-  filter: blur(5px);
+.text {
+  height: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.block .text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  transition: all 0.5s ease-in-out;
-}
-
-.block:hover .text {
-  bottom: 10px;
-}
-
-.block h2 {
+.text h2 {
   font-size: 24px;
-  margin: 0;
+  margin-bottom: 10px;
 }
 
-.block p {
-  font-size: 14px;
-  margin: 5px 0 0 0;
+.text p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.text span {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1d3557;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 10px;
+}
+
+.text span:hover {
+  background-color: #457b9d;
 }
 
 .container-text {
@@ -287,25 +277,60 @@ nav a:hover::after {
 }
 
 .scroll-text {
-  font-size: 22px;
   opacity: 0;
   transform: translateY(20px);
   transition: all 1s ease-in-out;
   color: #ffffff;
-  text-shadow: rgb(0, 0, 0) 0px 0px 10px;
 }
 
 .scroll-text.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.accordion {
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5%;
+}
+
+.accordion h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+.accordion p {
+  display: none;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+.accordion .arrow::before {
+  content: "\25BC"; /* flèche vers le bas */
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  transform: translateY(25%);
+  transition: transform 0.3s ease;
+  color: #000;
+  text-shadow: #ffffff 0 0 1px;
+}
+.accordion.open .arrow::before {
+  transform: translateY(25%) rotate(180deg);
+}
+.accordion.open p {
+  display: block;
+}
 
 .border {
   border-bottom: 1px solid #47515f;
-  width: 70vw;
-  margin-bottom: 4%;
+  width: 65vw;
+  margin-bottom: 80px;
+  margin-top: 80px;
   color: #ffffff;
-  text-shadow: rgb(0, 0, 0) 0px 0px 10px;
 }
 
 .glow-on-hover {
@@ -323,18 +348,7 @@ nav a:hover::after {
 
 .glow-on-hover:before {
   content: "";
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000
-  );
+  background: linear-gradient(45deg, #00ffd5, #002bff);
   position: absolute;
   top: -2px;
   left: -2px;
@@ -390,11 +404,19 @@ nav a:hover::after {
   font-size: 20px;
 }
 
+.container-contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
 .contact {
   font-size: 22px;
-  width: 70vw;
+  width: 50vw;
   text-align: center;
-  margin-bottom: 30px;
-  text-shadow: rgb(0, 0, 0) 0px 0px 10px;
+  margin-bottom: 40px;
   color: white;
 }
